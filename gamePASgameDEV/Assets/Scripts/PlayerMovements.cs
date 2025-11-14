@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool isGrounded;
+    private Animator animator;  
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -28,18 +31,47 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         if (moveInput != 0 && moveInput > 0)
-       {
-           sr.flipX = false;
-       }
-       else if (moveInput != 0 && moveInput < 0)
-       {
-           sr.flipX = true;
+        {
+            sr.flipX = false;
+        }
+        else if (moveInput != 0 && moveInput < 0)
+        {
+            sr.flipX = true;
            
-       }
+        }
+
+       SetAnimation(moveInput);
     }
 
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
     }
+
+    private void SetAnimation(float moveInput)
+    {
+        if (isGrounded)
+        {
+            if (moveInput != 0)
+            {
+                animator.Play("walking");               
+            }
+            else
+            {
+                animator.Play("Idle");
+            }    
+        }
+        else
+        {
+            if(rb.linearVelocity.y > 0)
+            {
+                animator.Play("Jumping");
+            }
+            else
+            {
+                animator.Play("Falling");
+            }
+        }
+    }
+    
 }
