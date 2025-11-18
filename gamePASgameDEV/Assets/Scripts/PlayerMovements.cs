@@ -49,11 +49,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (moveInput != 0 && moveInput > 0)
         {
-            sr.flipX = false;
+            transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else if (moveInput != 0 && moveInput < 0)
         {
-            sr.flipX = true;
+            transform.eulerAngles = new Vector3(0, 180, 0);
            
         }
 
