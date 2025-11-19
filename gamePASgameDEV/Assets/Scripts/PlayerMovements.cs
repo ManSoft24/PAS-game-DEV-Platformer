@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+// using UnityEngine.SceneManagement; // uncomment kalau mau restart scene saat mati
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -9,92 +9,119 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
 
-    public SpriteRenderer sr; 
+    public SpriteRenderer sr;
 
     private Rigidbody2D rb;
     private bool isGrounded;
-    private Animator animator;  
+    private Animator animator;
     public int maxJumps = 1;
     private int currentJumps;
+
+    public float deathY = -5f;
+    public Vector2 respawnPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        sr = sr == null ? GetComponent<SpriteRenderer>() : sr; // ambil SpriteRenderer kalau belum di-assign
+
+        if (rb == null)
+            Debug.LogWarning("Rigidbody2D belum ada di GameObject ini!");
+        if (animator == null)
+            Debug.LogWarning("Animator belum ada di GameObject ini!");
+        if (groundCheck == null)
+            Debug.LogWarning("groundCheck belum di-assign!");
+
+        respawnPoint = transform.position; // set initial respawn point
+        currentJumps = maxJumps;
     }
 
     void Update()
     {
-        // basic move code and Jumping
+        // ========== CEK MATI TERJATUH ==========
+        if (transform.position.y < deathY)
+        {
+            Die();
+            // return; // opsional, kalau mau hentikan update setelah mati
+        }
+        // =======================================
 
+        // basic move code and Jumping
         float moveInput = Input.GetAxis("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        // pastikan rb tidak null sebelum set velocity
+        if (rb != null)
+            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                if (rb != null) rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
-            else if(currentJumps > 0)
+            else if (currentJumps > 0)
             {
-
                 currentJumps--; // ngurangin token jumping
-                // 
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0); //biar gaya nya gk numpuk
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                if (rb != null)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0f); // reset y supaya tidak numpuk
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
             }
         }
 
         // flip sprite for animation
-
-        if (moveInput != 0 && moveInput > 0)
+        if (moveInput > 0.01f)
         {
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-        else if (moveInput != 0 && moveInput < 0)
+        else if (moveInput < -0.01f)
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
-           
         }
 
-       SetAnimation(moveInput);
+        SetAnimation(moveInput);
     }
 
     private void FixedUpdate()
     {
-        // ground checker
-        
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-
+        // ground checker (cek null juga)
+        if (groundCheck != null)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        }
+        else
+        {
+            isGrounded = false;
+        }
 
         // to reset jumps when grounded
-
-        if(isGrounded)
+        if (isGrounded)
         {
             currentJumps = maxJumps;
         }
     }
 
-    
-
     private void SetAnimation(float moveInput)
     {
         // animation
+        if (animator == null) return;
+
         if (isGrounded)
         {
-            if (moveInput != 0)
+            if (Mathf.Abs(moveInput) > 0.01f)
             {
-                animator.Play("walking");               
+                animator.Play("walking");
             }
             else
             {
                 animator.Play("Idle");
-            }    
+            }
         }
         else
         {
-            if(rb.linearVelocity.y > 0)
+            if (rb != null && rb.velocity.y > 0f)
             {
                 animator.Play("Jumping");
             }
@@ -103,7 +130,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 animator.Play("Falling");
             }
         }
-        
     }
-    
+
+    // ======== FUNGSI MATI / RESPAWN ==========
+    void Die()
+    {
+        Debug.Log("Player Mati Karena Jatuh!");
+
+        // respawn di titik yang diset (default posisi awal)
+        transform.position = respawnPoint;
+
+        // jika mau restart scene, uncomment 2 baris ini:
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    // ========================================
 }
