@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    private float moveSpeed = 5f;
+    [SerializeField]private float moveSpeed = 5f;
     public float jumpForce = 5f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
