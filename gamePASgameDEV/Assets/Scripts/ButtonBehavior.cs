@@ -7,5 +7,10 @@ public class ButtonBehavior : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScenes");
     }
+
+    public void quitButton()
+    {
+        Application.Quit();
+    }
 }
     
