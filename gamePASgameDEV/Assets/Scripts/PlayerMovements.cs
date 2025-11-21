@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
-    [SerializeField]private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 5f;
     public float jumpForce = 5f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
@@ -28,7 +28,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            moveSpeed = 9f;
+            if (isGrounded)
+            {
+                moveSpeed = 9f;
+            }
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
