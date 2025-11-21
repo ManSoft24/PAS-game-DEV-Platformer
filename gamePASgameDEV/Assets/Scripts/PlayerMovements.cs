@@ -102,10 +102,12 @@ public class playerMovements : MonoBehaviour
             }
             else if (moveInput != 0)
             {
-                animator.Play("walking");
+                animator.SetBool("isIdle", false);
+                animator.Play("Walking");
             }
-            else
+            else if (moveInput == 0)
             {
+                animator.SetBool("isIdle", true);
                 animator.Play("Idle");
             }
         }
@@ -120,7 +122,6 @@ public class playerMovements : MonoBehaviour
                 animator.Play("Falling");
             }
         }
-
     }
 
 }

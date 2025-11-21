@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ButtonBehavior : MonoBehaviour
 {
-    public GameObject loadingScreenPanel;
-    public GameObject mainMenuPanel;
+    [SerializeField]private GameObject LoadingScreen;
+    [SerializeField]private GameObject MainMenu;
 
   public void playButton ()
     {
@@ -21,7 +21,8 @@ public class ButtonBehavior : MonoBehaviour
 
     public void loadingScreen()
   {
-    loadingScreenPanel.SetActive(true);
+    LoadingScreen.SetActive(true);
+    MainMenu.SetActive(false);
     StartCoroutine(LoadSceneAsync("GameScenes"));
   }
 
@@ -43,7 +44,7 @@ public class ButtonBehavior : MonoBehaviour
       }
       yield return null;
     }
-    loadingScreenPanel.SetActive(false);
+    LoadingScreen.SetActive(false);
   }
 }
     

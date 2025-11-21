@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
@@ -9,15 +10,12 @@ public class PlayerBehavior : MonoBehaviour
     int currentHealth;
     public Healthbar healthBar;
 
-    Rigidbody2D rb;
-
     private Animator animator;
     [SerializeField] private GameObject deadScreen;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         StartGame();
     }
 
@@ -31,11 +29,11 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            TakeDamage(20);
+            animator.SetBool("isAttacking", true);
         }
-
+        
         if (currentHealth <= 0)
         {
             die();
@@ -77,5 +75,10 @@ public class PlayerBehavior : MonoBehaviour
                 transform.position = new Vector3(20, -2, 0);
             }
         }
+    }
+
+    void stopattackAnimation()
+    {
+        animator.SetBool("isAttacking", false);
     }
 }
