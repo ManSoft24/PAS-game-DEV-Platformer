@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class playerMovements : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     public float jumpForce = 5f;
