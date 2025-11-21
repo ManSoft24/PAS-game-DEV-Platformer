@@ -30,4 +30,13 @@ public class PlayerBehavior : MonoBehaviour
     
     healthBar.SetHealth(currentHealth);
   }
+
+  void OnTriggerEnter2D(Collider2D collision)
+  {
+    if (collision.gameObject.CompareTag("Void"))
+    {
+        TakeDamage(50);
+        transform.position = new Vector3(20, -2, 0); 
+    }
+  }
 }
