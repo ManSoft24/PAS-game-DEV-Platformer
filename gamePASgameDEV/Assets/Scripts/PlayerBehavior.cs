@@ -15,7 +15,6 @@ public class PlayerBehavior : MonoBehaviour
 
     void Awake()
     {
-        animator = GetComponent<Animator>();
         StartGame();
     }
 
@@ -29,10 +28,6 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            animator.SetBool("isAttacking", true);
-        }
         
         if (currentHealth <= 0)
         {
@@ -75,10 +70,5 @@ public class PlayerBehavior : MonoBehaviour
                 transform.position = new Vector3(20, -2, 0);
             }
         }
-    }
-
-    void stopattackAnimation()
-    {
-        animator.SetBool("isAttacking", false);
     }
 }

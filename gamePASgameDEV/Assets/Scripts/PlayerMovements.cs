@@ -4,7 +4,7 @@ using System.Collections;
 public class playerMovements : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float jumpForce = 7f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
@@ -95,19 +95,16 @@ public class playerMovements : MonoBehaviour
         // animation
         if (isGrounded)
         {
-
             if (Input.GetKey(KeyCode.LeftShift) && moveInput != 0)
             {
                 animator.Play("Run");
             }
             else if (moveInput != 0)
             {
-                animator.SetBool("isIdle", false);
-                animator.Play("Walking");
+                animator.Play("walking");
             }
             else if (moveInput == 0)
             {
-                animator.SetBool("isIdle", true);
                 animator.Play("Idle");
             }
         }
