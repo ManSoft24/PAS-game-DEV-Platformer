@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework;
 
 public class playerMovements : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
-    public float jumpForce = 7f;
+    public float jumpForce = 10f;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
     public LayerMask groundLayer;
@@ -97,26 +98,35 @@ public class playerMovements : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift) && moveInput != 0)
             {
-                animator.Play("Run");
+                animator.SetBool("isRunning", true);
+                animator.SetBool("isWalking", false);
             }
             else if (moveInput != 0)
             {
-                animator.Play("walking");
+                animator.SetBool("isWalking", true);
+                animator.SetBool("isRunning", false);
             }
             else if (moveInput == 0)
             {
-                animator.Play("Idle");
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
             }
+                animator.SetBool("isJumping", false);
+                animator.SetBool("isFalling", false);
         }
         else
         {
+            animator.SetBool("isWalking", false);
+            animator.SetBool("isRunning", false);
             if (rb.linearVelocity.y > 0)
             {
-                animator.Play("Jumping");
+                animator.SetBool("isJumping", true);
+                animator.SetBool("isFalling", false);
             }
             else
             {
-                animator.Play("Falling");
+                animator.SetBool("isFalling", true);
+                animator.SetBool("isJumping", false);
             }
         }
     }

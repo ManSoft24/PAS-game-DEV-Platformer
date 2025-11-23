@@ -9,13 +9,15 @@ public class PlayerBehavior : MonoBehaviour
     int maxHealth = 100;
     int currentHealth;
     public Healthbar healthBar;
-
+    public float attackDelay = 0.5f;
+    private bool onCooldown;
     private Animator animator;
     [SerializeField] private GameObject deadScreen;
 
     void Awake()
     {
         StartGame();
+        animator = GetComponent<Animator>();
     }
 
     void StartGame()
@@ -36,6 +38,11 @@ public class PlayerBehavior : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             restartGame();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
         }
     }
 
@@ -71,4 +78,24 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
+
+    void Attack()
+  {
+    if (!onCooldown)
+    {
+        return;
+    }
+    else
+    {
+    animator.SetTrigger("Attack");
+    onCooldown = true;
+    StartCoroutine(AttackCooldown());
+    }
+  }
+
+  public IEnumerator AttackCooldown()
+  {
+    yield return new WaitForSeconds(attackDelay);
+    onCooldown = false;
+  }
 }
