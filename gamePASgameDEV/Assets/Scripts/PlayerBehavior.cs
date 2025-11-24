@@ -9,15 +9,18 @@ public class PlayerBehavior : MonoBehaviour
     int maxHealth = 100;
     int currentHealth;
     public Healthbar healthBar;
-    public float attackDelay = 0.5f;
-    private bool onCooldown;
+    private float attackDelay = 1f;
+    public float timeuntilldead = 1.5f;
+    private bool onCooldown = false;
     private Animator animator;
+    Collider2D playercollision;
     [SerializeField] private GameObject deadScreen;
 
     void Awake()
     {
         StartGame();
         animator = GetComponent<Animator>();
+        playercollision = GetComponent<Collider2D>();
     }
 
     void StartGame()
@@ -30,16 +33,15 @@ public class PlayerBehavior : MonoBehaviour
 
     void Update()
     {
-        
-        if (currentHealth <= 0)
+
+        if (currentHealth <= 0 && !playercollision.gameObject.CompareTag("Void"))
         {
             die();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                restartGame();
+            }
         }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            restartGame();
-        }
-
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
@@ -62,8 +64,8 @@ public class PlayerBehavior : MonoBehaviour
 
     void die()
     {
-        Time.timeScale = 0f;
-        deadScreen.SetActive(true);
+        animator.SetTrigger("Death");
+        StartCoroutine(WaitUntilDead());
     }
 
 
@@ -76,26 +78,38 @@ public class PlayerBehavior : MonoBehaviour
             {
                 transform.position = new Vector3(20, -2, 0);
             }
+            else
+            {
+                Time.timeScale = 0f;
+                deadScreen.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    restartGame();
+                }
+            }
         }
     }
 
     void Attack()
-  {
-    if (!onCooldown)
     {
-        return;
-    }
-    else
-    {
-    animator.SetTrigger("Attack");
-    onCooldown = true;
-    StartCoroutine(AttackCooldown());
-    }
-  }
+        if (onCooldown == false)
+        {
+            animator.SetTrigger("Attack1");
+            StartCoroutine(AttackCooldown());
+        }
+        }
 
-  public IEnumerator AttackCooldown()
-  {
-    yield return new WaitForSeconds(attackDelay);
-    onCooldown = false;
-  }
+    public IEnumerator AttackCooldown()
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(attackDelay);
+        onCooldown = false;
+    }
+
+    public IEnumerator WaitUntilDead()
+    {
+        yield return new WaitForSeconds(timeuntilldead);
+        Time.timeScale = 0f;
+        deadScreen.SetActive(true);
+    }
 }

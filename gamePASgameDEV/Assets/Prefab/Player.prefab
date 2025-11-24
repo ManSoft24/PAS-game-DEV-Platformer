@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
+  attackDelay: 0.8
+  timeuntilldead: 1.5
   deadScreen: {fileID: 0}
 --- !u!1 &3385453269436961929
 GameObject:
