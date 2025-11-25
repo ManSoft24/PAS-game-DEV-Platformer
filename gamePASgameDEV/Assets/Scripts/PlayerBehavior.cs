@@ -9,12 +9,11 @@ public class PlayerBehavior : MonoBehaviour
     int maxHealth = 100;
     int currentHealth;
     public Healthbar healthBar;
-    private float attackDelay = 1f;
-    public float timeuntilldead = 1.5f;
+    private float attackDelay = 0.9f;
     private bool onCooldown = false;
     private Animator animator;
     Collider2D playercollision;
-    [SerializeField] private GameObject deadScreen;
+    [SerializeField] private GameObject deadScreen;  
 
     void Awake()
     {
@@ -64,8 +63,8 @@ public class PlayerBehavior : MonoBehaviour
 
     void die()
     {
-        animator.SetTrigger("Death");
-        StartCoroutine(WaitUntilDead());
+        Time.timeScale = 0f;
+        deadScreen.SetActive(true);
     }
 
 
@@ -104,12 +103,5 @@ public class PlayerBehavior : MonoBehaviour
         onCooldown = true;
         yield return new WaitForSeconds(attackDelay);
         onCooldown = false;
-    }
-
-    public IEnumerator WaitUntilDead()
-    {
-        yield return new WaitForSeconds(timeuntilldead);
-        Time.timeScale = 0f;
-        deadScreen.SetActive(true);
     }
 }
