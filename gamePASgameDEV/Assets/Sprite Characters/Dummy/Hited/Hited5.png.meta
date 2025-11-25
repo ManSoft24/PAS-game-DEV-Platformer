@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c0343dec00f5b2549ad5fef9525519a3
+guid: 480b5d475fcb0044084e0f33139fe2d6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2599969905456701152
-    second: lamp_0
+      213: -3613077779906984641
+    second: Hited5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lamp_0
+      name: Hited5_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 7
         y: 0
-        width: 23
-        height: 57
+        width: 33
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0eed3719ad2f41420800000000000000
-      internalID: 2599969905456701152
+      spriteID: f3589cee6e4cbddc0800000000000000
+      internalID: -3613077779906984641
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lamp_0: 2599969905456701152
+      Hited5_0: -3613077779906984641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

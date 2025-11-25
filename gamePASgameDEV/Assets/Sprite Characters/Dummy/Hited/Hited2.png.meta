@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: c0343dec00f5b2549ad5fef9525519a3
+guid: 34dabf129d2cd924bbb7a7e6eacc19a8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2599969905456701152
-    second: lamp_0
+      213: 407420783330303116
+    second: Hited2_0
+  - first:
+      213: 355337772610006362
+    second: Hited2_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lamp_0
+      name: Hited2_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 23
-        height: 57
+        width: 41
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +118,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0eed3719ad2f41420800000000000000
-      internalID: 2599969905456701152
+      spriteID: c8c93883b0377a500800000000000000
+      internalID: 407420783330303116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hited2_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 32
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5da2bf42d96ee400800000000000000
+      internalID: 355337772610006362
       vertices: []
       indices: 
       edges: []
@@ -135,7 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lamp_0: 2599969905456701152
+      Hited2_0: 407420783330303116
+      Hited2_1: 355337772610006362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
