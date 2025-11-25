@@ -11,9 +11,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public SpriteRenderer sr; 
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private bool isGrounded;
-    private Animator animator;  
+    public Animator animator;  
     public int maxJumps = 1;
     private int currentJumps;
     void Start()
