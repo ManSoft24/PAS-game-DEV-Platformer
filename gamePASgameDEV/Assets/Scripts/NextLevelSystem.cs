@@ -1,24 +1,24 @@
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextLevelSystem : MonoBehaviour
 {
 
     void Start()
     {
-        
+
     }
 
 
     void Update()
     {
-        
+
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void nextLevel()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Level2");
-        }
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+            Debug.Log("Level Complete!");
     }
 }

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     int maxHealth = 100;
     int currentHealth;
     public GameObject enemyObject;
+    public GameObject mouse;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            mouse.SetActive(false);
             animator.SetBool("isDead", true);
             StartCoroutine(TimeBeforeDestroy());
         }

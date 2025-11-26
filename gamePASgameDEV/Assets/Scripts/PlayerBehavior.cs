@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     private float attackDelay = 1f;
     private bool onCooldown = false;
     private Animator animator;
+    NextLevelSystem nextLevelSystem;
     Enemy enemy;
     int playerDamage = 40;
     Collider2D playercollision;
@@ -24,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         StartGame();
         animator = GetComponent<Animator>();
+        nextLevelSystem = GetComponent<NextLevelSystem>();
         playercollision = GetComponent<Collider2D>();
     }
 
@@ -92,6 +94,12 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
         }
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+            Debug.Log("Level Complete!");
+            nextLevelSystem.nextLevel();
+        }
     }
 
     void Attack()
@@ -119,7 +127,7 @@ public class PlayerBehavior : MonoBehaviour
 
             Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         }
-        }
+    }
 
     public IEnumerator AttackCooldown()
     {
