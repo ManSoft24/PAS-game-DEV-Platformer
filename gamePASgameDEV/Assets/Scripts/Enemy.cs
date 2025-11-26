@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Xml.Serialization;
 using UnityEngine;
 
@@ -22,7 +23,14 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-           enemyObject.SetActive(false);
+            animator.SetBool("isDead", true);
+            StartCoroutine(TimeBeforeDestroy());
         }
+    }
+
+    IEnumerator TimeBeforeDestroy()
+    {
+        yield return new WaitForSeconds(1.15f);
+        enemyObject.SetActive(false);
     }
 }

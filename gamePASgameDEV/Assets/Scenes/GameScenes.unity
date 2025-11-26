@@ -572,7 +572,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 29.41315, y: -2.12514, z: -10}
+  m_LocalPosition: {x: 29.404615, y: -2.12514, z: -10}
   m_LocalScale: {x: 0.7513, y: 0.7877, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1892,7 +1892,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4723107735738678597, guid: 24619532edeeb2b46bb47e5f3ceab286, type: 3}
+  m_Sprite: {fileID: -8804577451312863447, guid: 64d23a3537e11ab43be943ecfc7eaf2c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1911,13 +1911,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803040721}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 98.02464, y: -4.71, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 98.02464, y: -5.037, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!70 &803040725
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1952,8 +1952,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.06667709, y: 0}
-  m_Size: {x: 0.6844406, y: 2.25}
+  m_Offset: {x: 0.4896431, y: 0.12353873}
+  m_Size: {x: 1.2499008, y: 1.8159451}
   m_Direction: 0
 --- !u!50 &803040726
 Rigidbody2D:
@@ -11955,7 +11955,7 @@ Transform:
   m_GameObject: {fileID: 2040830048}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -0.17, z: 0}
+  m_LocalPosition: {x: 1.95, y: -0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12423,7 +12423,7 @@ PrefabInstance:
       objectReference: {fileID: 2040830049}
     - target: {fileID: 8079752943441909442, guid: f0517b829ee777c40931d860597d8174, type: 3}
       propertyPath: attackRange
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8079752943441909442, guid: f0517b829ee777c40931d860597d8174, type: 3}
       propertyPath: enemyLayers.m_Bits
