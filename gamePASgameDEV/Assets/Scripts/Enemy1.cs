@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Xml.Serialization;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy1 : MonoBehaviour
 {
     Animator animator;
     int maxHealth = 100;
     int currentHealth;
     public GameObject enemyObject;
-    public GameObject mouse;
 
     void Start()
     {
@@ -25,7 +23,6 @@ public class Enemy : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            mouse.SetActive(false);
             animator.SetBool("isDead", true);
             StartCoroutine(TimeBeforeDestroy());
         }

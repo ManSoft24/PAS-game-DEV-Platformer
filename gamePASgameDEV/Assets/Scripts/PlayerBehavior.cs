@@ -9,10 +9,11 @@ public class PlayerBehavior : MonoBehaviour
     int maxHealth = 100;
     int currentHealth;
     public Healthbar healthBar;
-    private float attackDelay = 1f;
+    private float attackDelay = 0.9f;
     private bool onCooldown = false;
     private Animator animator;
     NextLevelSystem nextLevelSystem;
+    public Transform spawnPoint; 
     Enemy enemy;
     int playerDamage = 40;
     Collider2D playercollision;
@@ -33,7 +34,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-        transform.position = new Vector3(20, -2, 0);
+        transform.position = spawnPoint.position;
     }
 
 
@@ -82,7 +83,7 @@ public class PlayerBehavior : MonoBehaviour
             TakeDamage(30);
             if (currentHealth > 0)
             {
-                transform.position = new Vector3(20, -2, 0);
+                transform.position = spawnPoint.position;
             }
             else
             {
@@ -97,7 +98,6 @@ public class PlayerBehavior : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Finish"))
         {
-            Debug.Log("Level Complete!");
             nextLevelSystem.nextLevel();
         }
     }
@@ -115,7 +115,7 @@ public class PlayerBehavior : MonoBehaviour
                 StartCoroutine(AttackCooldown());
             }
 
-
+            StartCoroutine(AttackCooldown());
         }
 
         void OnDrawGizmosSelected()

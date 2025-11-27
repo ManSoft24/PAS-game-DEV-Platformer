@@ -1010,8 +1010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60dd922b7b37979438decc290ed79ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreenPanel: {fileID: 1148770946}
-  mainMenuPanel: {fileID: 1229481522}
+  LoadingScreen: {fileID: 1148770946}
+  MainMenu: {fileID: 1229481522}
 --- !u!4 &979767802
 Transform:
   m_ObjectHideFlags: 0
